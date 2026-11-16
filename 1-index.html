@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>調式練習 · 一音變身 One-Note Change</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#2FBFAA; --gold:#E8A33D; --ink:#EDEDE8; --dim:#9AA3A0;
+  --card:#1E2426; --card2:#232B2D; --line:#33403F;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{font-size:16px}
+body{
+  font-family:'Noto Sans TC',-apple-system,sans-serif;color:var(--ink);
+  background:radial-gradient(120% 90% at 50% 0%, #2A3436 0%, #1B2123 45%, #141819 100%);
+  min-height:100vh;line-height:1.65;
+}
+.wrap{max-width:760px;margin:0 auto;padding:28px 18px 64px}
+header{text-align:center;margin-bottom:26px}
+h1{font-family:'Noto Serif TC',serif;font-size:1.75rem;font-weight:700;letter-spacing:.04em}
+h1 .en{display:block;font-size:.95rem;color:var(--teal);letter-spacing:.14em;font-family:'Noto Sans TC';font-weight:500;margin-top:4px}
+.sub{color:var(--dim);font-size:.86rem;margin-top:10px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 18px;margin-bottom:18px}
+h2{font-family:'Noto Serif TC',serif;font-size:1.12rem;color:var(--gold);margin-bottom:10px;letter-spacing:.05em}
+h2 .en{font-family:'Noto Sans TC';font-size:.78rem;color:var(--dim);font-weight:500;letter-spacing:.1em;margin-left:8px}
+.explain p{font-size:.92rem;margin-bottom:10px}
+.explain p.en{color:var(--dim);font-size:.84rem}
+.explain b{color:var(--teal);font-weight:700}
+.keys{display:grid;grid-template-columns:repeat(9,1fr);gap:6px;margin:6px 0 16px}
+.keys button{
+  font-family:'Noto Sans TC';font-size:.95rem;font-weight:700;color:var(--ink);
+  background:var(--card2);border:1px solid var(--line);border-radius:10px;
+  padding:10px 0;cursor:pointer;transition:all .15s;
+}
+.keys button.on{background:var(--teal);border-color:var(--teal);color:#10201D}
+.keys-label{font-size:.82rem;color:var(--dim);margin-bottom:6px}
+.keys-label b{color:var(--ink)}
+.player{display:flex;align-items:center;gap:14px}
+.playbtn{
+  width:64px;height:64px;min-width:64px;border-radius:50%;border:none;cursor:pointer;
+  background:var(--gold);color:#2A1D08;font-size:1.5rem;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 18px rgba(232,163,61,.35);transition:transform .12s;
+}
+.playbtn:active{transform:scale(.94)}
+.pinfo{flex:1}
+.ptitle{font-size:.92rem;font-weight:700}
+.ptitle .en{color:var(--dim);font-weight:400;font-size:.8rem;margin-left:6px}
+.bar{height:6px;background:#101617;border-radius:3px;margin-top:8px;position:relative;cursor:pointer}
+.bar .fill{position:absolute;left:0;top:0;bottom:0;width:0%;background:var(--teal);border-radius:3px}
+.bar .seg{position:absolute;top:-2px;bottom:-2px;width:1px;background:#33403F}
+.ptime{font-size:.74rem;color:var(--dim);margin-top:5px;display:flex;justify-content:space-between}
+.hint{font-size:.78rem;color:var(--dim);margin-top:12px}
+.hint b{color:var(--gold);font-weight:500}
+.mode{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;margin-bottom:12px;transition:border-color .2s, background .2s}
+.mode.playing{border-color:var(--teal);background:#20302E}
+.mhead{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.mnum{font-family:'Noto Serif TC';color:var(--gold);font-size:.85rem}
+.mname{font-family:'Noto Serif TC';font-size:1.06rem;font-weight:700}
+.mname .en{font-family:'Noto Sans TC';font-weight:400;font-size:.76rem;color:var(--dim);margin-left:6px}
+.mchg{width:100%;font-size:.8rem;color:var(--teal)}
+.mchg .en{color:var(--dim);margin-left:6px}
+.rowlabel{font-size:.76rem;color:var(--dim);margin:8px 0 4px}
+.rowlabel b{color:var(--ink);font-weight:500}
+.rowlabel .en{margin-left:6px}
+.sol{display:grid;grid-template-columns:repeat(8,1fr);gap:4px}
+.cell{text-align:center;border-radius:8px;padding:6px 0 5px;background:var(--card2);transition:background .12s}
+.cell .dot{height:10px;font-size:10px;line-height:10px;color:var(--gold)}
+.cell .syl{font-size:.86rem;font-weight:700;line-height:1.3}
+.cell .num{font-size:.72rem;color:var(--dim);line-height:1.3}
+.cell.alt .syl{color:var(--gold)}
+.cell.was{box-shadow:inset 0 0 0 1px rgba(232,163,61,.55)}
+.cell.now{background:var(--teal)}
+.cell.now .syl,.cell.now .num,.cell.now .dot{color:#10201D}
+.mnote{font-size:.74rem;color:var(--dim);margin-top:8px}
+footer{text-align:center;color:var(--dim);font-size:.74rem;margin-top:30px;line-height:1.9}
+footer a{color:var(--teal);text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>調式練習 · 一音變身<span class="en">MODES PRACTICE · ONE-NOTE CHANGE</span></h1>
+  <div class="sub">開口唱練習 · 只動一個音,換一個調式 · Move one note, change the mode</div>
+</header>
+
+<div class="card explain">
+  <h2>這是什麼?<span class="en">WHAT IS THIS</span></h2>
+  <p>全曲 8 組、64 小節。每一組先唱<b>來源音階</b>,再唱<b>只改一個音</b>之後的新音階。被改的那個音用變化唱名(金色)。例如大調的 mi 降半音變成 <b>me</b>,音階就變成旋律小調。</p>
+  <p>唱名採<b>首調唱法</b>:主音永遠唱 do,變化的音換成變化唱名(me、le、ra、se、te),其他音不變。唱名和簡譜數字不會隨起始音改變,只有音高會跟著換。</p>
+  <p class="en">There are 8 groups and 64 bars. Each group first sings a source scale, then the same scale with exactly one note changed. The changed note takes an altered syllable (in gold). For example, lowering mi of the major scale gives me, and the scale becomes melodic minor (ascending).</p>
+  <p class="en">This is movable-do: the tonic is always do, and altered notes use altered syllables (me, le, ra, se, te). Syllables and numbers stay the same in every key; only the pitch moves.</p>
+</div>
+
+<div class="card">
+  <h2>練習<span class="en">PRACTICE</span></h2>
+  <div class="keys-label">起始音 <b>Starting note</b>(唱名、簡譜不變,音高跟著換 · solfege stays, pitch moves)</div>
+  <div class="keys" id="keys"></div>
+  <div class="player">
+    <button class="playbtn" id="playBtn" aria-label="play">▶</button>
+    <div class="pinfo">
+      <div class="ptitle"><span id="nowKey">C</span> 開始 · 8 組<span class="en">8 groups</span></div>
+      <div class="bar" id="bar"><div class="fill" id="fill"></div></div>
+      <div class="ptime"><span id="tcur">0:00</span><span id="tdur">2:08</span></div>
+    </div>
+  </div>
+  <div class="hint">跟著音檔<b>開口唱</b>。播放時會標出現在的唱名;點任何一組可以從那裡開始。<br>Sing out loud with the audio. The current syllable lights up as it plays; tap any group to start from there.</div>
+</div>
+
+<div id="modes"></div>
+
+<div class="card explain">
+  <h2>怎麼練<span class="en">HOW TO PRACTISE</span></h2>
+  <p>先聽一遍,第二遍開始跟著唱。注意金色那個唱名:來源音階唱到它的位置時,下一遍就換成變化唱名。聽出這一個音的差別,就聽出調式的差別。8 組唱完,換一個起始音再來。</p>
+  <p class="en">Listen once, then sing along. Watch the gold syllable: where the source scale has the old note, the second pass has the altered one. Hearing that one note is hearing the mode change. After all 8 groups, pick a new starting note and go again.</p>
+</div>
+
+<footer>
+  調式練習 · 一音變身 One-Note Change - 測試版 Test build<br>
+  台灣合唱音樂中心 TCMC 製作 · © 2026 朱元雷 Ray Chu · <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.zh-hant">CC BY-NC 4.0</a>
+</footer>
+</div>
+
+<audio id="au" preload="auto"></audio>
+
+<script>
+const KEYS = [
+  {id:'Ab', label:'A♭'}, {id:'A', label:'A'}, {id:'Bb', label:'B♭'},
+  {id:'B', label:'B'}, {id:'C', label:'C'}, {id:'Db', label:'D♭'},
+  {id:'D', label:'D'}, {id:'Eb', label:'E♭'}, {id:'E', label:'E'}
+];
+// pitch names per key and syllable (spelling taken from the score XML)
+const NAMES = {"Ab": {"do": "A♭", "re": "B♭", "mi": "C", "fa": "D♭", "sol": "E♭", "la": "F", "ti": "G", "me": "C♭", "te": "G♭", "le": "F♭", "ra": "A", "se": "D"}, "A": {"do": "A", "re": "B", "mi": "C♯", "fa": "D", "sol": "E", "la": "F♯", "ti": "G♯", "me": "C", "te": "G", "le": "F", "ra": "B♭", "se": "E♭"}, "Bb": {"do": "B♭", "re": "C", "mi": "D", "fa": "E♭", "sol": "F", "la": "G", "ti": "A", "me": "D♭", "te": "A♭", "le": "G♭", "ra": "C♭", "se": "F♭"}, "B": {"do": "B", "re": "C♯", "mi": "D♯", "fa": "E", "sol": "F♯", "la": "G♯", "ti": "A♯", "me": "D", "te": "A", "le": "G", "ra": "C", "se": "F"}, "C": {"do": "C", "re": "D", "mi": "E", "fa": "F", "sol": "G", "la": "A", "ti": "B", "me": "E♭", "te": "B♭", "le": "A♭", "ra": "D♭", "se": "G♭"}, "Db": {"do": "D♭", "re": "E♭", "mi": "F", "fa": "G♭", "sol": "A♭", "la": "B♭", "ti": "C", "me": "F♭", "te": "C♭", "le": "A", "ra": "D", "se": "G"}, "D": {"do": "D", "re": "E", "mi": "F♯", "fa": "G", "sol": "A", "la": "B", "ti": "C♯", "me": "F", "te": "C", "le": "B♭", "ra": "E♭", "se": "A♭"}, "Eb": {"do": "E♭", "re": "F", "mi": "G", "fa": "A♭", "sol": "B♭", "la": "C", "ti": "D", "me": "G♭", "te": "D♭", "le": "C♭", "ra": "F♭", "se": "A"}, "E": {"do": "E", "re": "F♯", "mi": "G♯", "fa": "A", "sol": "B", "la": "C♯", "ti": "D♯", "me": "G", "te": "D", "le": "C", "ra": "F", "se": "B♭"}};
+const NUM = {do:'1',ra:'♭2',re:'2',me:'♭3',mi:'3',fa:'4',se:'♭5',sol:'5',le:'♭6',la:'6',te:'♭7',ti:'7'};
+const ALT = {me:1,le:1,ra:1,se:1,te:1};
+const ROWS = [["do", "re", "mi", "fa", "sol", "la", "ti", "do", "do", "re", "me", "fa", "sol", "la", "ti", "do"], ["do", "re", "mi", "fa", "sol", "la", "te", "do", "do", "re", "me", "fa", "sol", "la", "te", "do"], ["do", "re", "me", "fa", "sol", "la", "te", "do", "do", "re", "me", "fa", "sol", "la", "ti", "do"], ["do", "re", "me", "fa", "sol", "la", "te", "do", "do", "re", "me", "fa", "sol", "le", "te", "do"], ["do", "re", "me", "fa", "sol", "le", "te", "do", "do", "re", "me", "fa", "sol", "le", "ti", "do"], ["do", "re", "me", "fa", "sol", "le", "te", "do", "do", "re", "me", "fa", "sol", "la", "te", "do"], ["do", "re", "me", "fa", "sol", "le", "te", "do", "do", "ra", "me", "fa", "sol", "le", "te", "do"], ["do", "ra", "me", "fa", "sol", "le", "te", "do", "do", "ra", "me", "fa", "se", "le", "te", "do"]];
+const INFO = [
+  {from:['Ionian','大調'], to:['Melodic minor','旋律小調'], a:'mi', b:'me', idx:2, how:'降 mi'},
+  {from:['Mixolydian','米索利底安'], to:['Dorian','多里安'], a:'mi', b:'me', idx:2, how:'降 mi'},
+  {from:['Dorian','多里安'], to:['Melodic minor','旋律小調'], a:'te', b:'ti', idx:6, how:'升 te 回 ti'},
+  {from:['Dorian','多里安'], to:['Aeolian','自然小調'], a:'la', b:'le', idx:5, how:'降 la'},
+  {from:['Aeolian','自然小調'], to:['Harmonic minor','和聲小調'], a:'te', b:'ti', idx:6, how:'升 te 回 ti'},
+  {from:['Aeolian','自然小調'], to:['Dorian','多里安'], a:'le', b:'la', idx:5, how:'升 le 回 la'},
+  {from:['Aeolian','自然小調'], to:['Phrygian','弗里吉安'], a:'re', b:'ra', idx:1, how:'降 re'},
+  {from:['Phrygian','弗里吉安'], to:['Locrian','洛克里安'], a:'sol', b:'se', idx:4, how:'降 sol'},
+];
+const SEC = 16;            // seconds per group (16 notes, 1s each)
+const TOTAL = 128;         // 8 groups * 16s
+let curKey = 'C';
+
+const au = document.getElementById('au');
+const playBtn = document.getElementById('playBtn');
+const fill = document.getElementById('fill');
+const bar = document.getElementById('bar');
+const tcur = document.getElementById('tcur');
+
+function buildKeys(){
+  const el = document.getElementById('keys');
+  el.innerHTML = '';
+  KEYS.forEach(k=>{
+    const b = document.createElement('button');
+    b.textContent = k.label;
+    if(k.id===curKey) b.classList.add('on');
+    b.onclick = ()=>{ curKey = k.id; loadKey(); buildKeys(); buildModes(); };
+    el.appendChild(b);
+  });
+}
+function loadKey(){
+  au.src = 'audio/one-note-change-' + curKey + '.m4a';
+  au.load();
+  pause();
+  au.currentTime = 0;
+  document.getElementById('nowKey').textContent = KEYS.find(k=>k.id===curKey).label;
+}
+function pn(s){ return NAMES[curKey][s]; }
+function cells(si, half){
+  const row = ROWS[si].slice(half*8, half*8+8);
+  const inf = INFO[si];
+  return row.map((s,i)=>{
+    let cls = 'cell';
+    if(ALT[s]) cls += ' alt';
+    if(i===inf.idx) cls += ' was';
+    return `<div class="${cls}" id="c${si}-${half*8+i}"><div class="dot">${i===7?'•':''}</div><div class="syl">${s}</div><div class="num">${NUM[s]}</div></div>`;
+  }).join('');
+}
+function buildModes(){
+  const wrap = document.getElementById('modes');
+  wrap.innerHTML = '';
+  INFO.forEach((inf,si)=>{
+    const div = document.createElement('div');
+    div.className = 'mode';
+    div.id = 'mode' + si;
+    const b1 = si*8+1, b2 = si*8+8;
+    div.innerHTML = `
+      <div class="mhead">
+        <span class="mnum">${si+1}</span>
+        <span class="mname">${inf.from[0]} → ${inf.to[0]}<span class="en">${inf.from[1]} → ${inf.to[1]}</span></span>
+        <span class="mchg">${inf.how} · <b>${inf.a}</b> → <b>${inf.b}</b>(${pn(inf.a)} → ${pn(inf.b)})<span class="en">change one note</span></span>
+      </div>
+      <div class="rowlabel">先唱來源 <b>${inf.from[1]} ${inf.from[0]}</b><span class="en">source scale</span></div>
+      <div class="sol">${cells(si,0)}</div>
+      <div class="rowlabel">再唱改變後 <b>${inf.to[1]} ${inf.to[0]}</b><span class="en">after the change</span></div>
+      <div class="sol">${cells(si,1)}</div>
+      <div class="mnote">第 ${b1}–${b2} 小節 · bars ${b1}–${b2} · 上行 ascending</div>`;
+    div.onclick = ()=>{ au.currentTime = si*SEC + 0.001; play(); };
+    wrap.appendChild(div);
+  });
+}
+function fmt(t){ t=Math.max(0,Math.floor(t)); return Math.floor(t/60)+':'+String(t%60).padStart(2,'0'); }
+function play(){ au.play().catch(()=>{}); }
+function pause(){ au.pause(); playBtn.textContent='▶'; }
+playBtn.onclick = ()=>{ if(au.paused){ play(); } else { pause(); } };
+au.onplay = ()=>{ playBtn.textContent='❚❚'; };
+au.onpause = ()=>{ playBtn.textContent='▶'; };
+bar.onclick = (e)=>{
+  const r = bar.getBoundingClientRect();
+  au.currentTime = Math.min(TOTAL-0.05, Math.max(0,(e.clientX-r.left)/r.width*TOTAL));
+};
+au.addEventListener('timeupdate', ()=>{
+  let t = au.currentTime;
+  if(t >= TOTAL){ pause(); au.currentTime = 0; t = 0; }
+  fill.style.width = (t/TOTAL*100)+'%';
+  tcur.textContent = fmt(t);
+  const si = Math.min(7, Math.floor(t/SEC));
+  const ni = Math.min(15, Math.floor(t - si*SEC));
+  INFO.forEach((s,i)=>document.getElementById('mode'+i).classList.toggle('playing', i===si && !au.paused));
+  document.querySelectorAll('.cell.now').forEach(c=>c.classList.remove('now'));
+  if(!au.paused){
+    const c = document.getElementById('c'+si+'-'+ni);
+    if(c) c.classList.add('now');
+  }
+});
+au.addEventListener('ended', ()=>{ pause(); au.currentTime=0; });
+for(let i=1;i<8;i++){
+  const s = document.createElement('div');
+  s.className='seg'; s.style.left=(i/8*100)+'%';
+  bar.appendChild(s);
+}
+buildKeys(); buildModes(); loadKey();
+</script>
+</body>
+</html>
