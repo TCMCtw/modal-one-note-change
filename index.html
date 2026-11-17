@@ -90,10 +90,10 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="card explain">
   <h2>這是什麼?<span class="en">WHAT IS THIS</span></h2>
-  <p>全曲 8 組、64 小節。每一組先唱<b>來源音階</b>,再唱<b>只改一個音</b>之後的新音階。被改的那個音用變化唱名(金色)。例如大調的 mi 降半音變成 <b>me</b>,音階就變成旋律小調。</p>
-  <p>唱名採<b>首調唱法</b>:主音永遠唱 do,變化的音換成變化唱名(me、le、ra、se、te),其他音不變。唱名和簡譜數字不會隨起始音改變,只有音高會跟著換。</p>
-  <p class="en">There are 8 groups and 64 bars. Each group first sings a source scale, then the same scale with exactly one note changed. The changed note takes an altered syllable (in gold). For example, lowering mi of the major scale gives me, and the scale becomes melodic minor (ascending).</p>
-  <p class="en">This is movable-do: the tonic is always do, and altered notes use altered syllables (me, le, ra, se, te). Syllables and numbers stay the same in every key; only the pitch moves.</p>
+  <p>全曲 8 組、92 小節。每一組先唱<b>來源音階</b>,再<b>只改一個音</b>(金色),最後用新調式自己的首調唱名再唱一次。例如大調的 mi 降半音變成 <b>me</b>,音階就變成旋律小調;下一行改用旋律小調的首調唱名 la ti do re mi fi si la 再唱。</p>
+  <p>唱名採<b>首調(母大調)唱法</b>:每個調式都用它的母大調唱名,例如 Dorian 唱 re mi fa sol la ti do re,也就是 2 3 4 5 6 7 1 2。變化的音唱 me、te、fi、di、si。數字上方的點表示高八度,右側的 ♭ ♯ 表示降半音、升半音。</p>
+  <p class="en">There are 8 groups and 92 bars. Each group first sings a source scale, then the same scale with exactly one note changed (in gold), then the new mode once more in its own parent-major syllables. For example, lowering mi of the major scale gives me, and the scale becomes melodic minor; the next row re-sings it as la ti do re mi fi si la.</p>
+  <p class="en">The solfege is parent-major (movable-do): every mode uses the syllables of its parent major scale, so Dorian is re mi fa sol la ti do re = 2 3 4 5 6 7 1 2. Changed notes are sung me, te, fi, di and si. A dot above a number means the octave above; ♭ and ♯ mean a semitone lower and higher.</p>
 </div>
 
 <div class="card">
@@ -105,7 +105,7 @@ footer a{color:var(--teal);text-decoration:none}
     <div class="pinfo">
       <div class="ptitle"><span id="nowKey">C</span> 開始 · 8 組<span class="en">8 groups</span></div>
       <div class="bar" id="bar"><div class="fill" id="fill"></div></div>
-      <div class="ptime"><span id="tcur">0:00</span><span id="tdur">2:08</span></div>
+      <div class="ptime"><span id="tcur">0:00</span><span id="tdur">3:04</span></div>
     </div>
   </div>
   <div class="hint">跟著音檔<b>開口唱</b>。播放時會標出現在的唱名;點任何一組可以從那裡開始。<br>Sing out loud with the audio. The current syllable lights up as it plays; tap any group to start from there.</div>
@@ -115,8 +115,8 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="card explain">
   <h2>怎麼練<span class="en">HOW TO PRACTISE</span></h2>
-  <p>先聽一遍,第二遍開始跟著唱。注意金色那個唱名:來源音階唱到它的位置時,下一遍就換成變化唱名。聽出這一個音的差別,就聽出調式的差別。8 組唱完,換一個起始音再來。</p>
-  <p class="en">Listen once, then sing along. Watch the gold syllable: where the source scale has the old note, the second pass has the altered one. Hearing that one note is hearing the mode change. After all 8 groups, pick a new starting note and go again.</p>
+  <p>先聽一遍,第二遍開始跟著唱。注意金色那個唱名:來源音階唱到它的位置時,下一行就換成變化唱名,聽出這一個音的差別,就聽出調式的差別。最後一行用新調式自己的唱名唱,對比會很明顯。8 組唱完,換一個起始音再來。</p>
+  <p class="en">Listen once, then sing along. Watch the gold syllable: where the source scale has the old note, the next row has the altered one. Hearing that one note is hearing the mode change. The last row re-sings the new mode in its own syllables, and the contrast is obvious. After all 8 groups, pick a new starting note and go again.</p>
 </div>
 
 <footer>
@@ -133,23 +133,23 @@ const KEYS = [
   {id:'B', label:'B'}, {id:'C', label:'C'}, {id:'Db', label:'D♭'},
   {id:'D', label:'D'}, {id:'Eb', label:'E♭'}, {id:'E', label:'E'}
 ];
-// pitch names per key and syllable (spelling taken from the score XML)
-const NAMES = {"Ab": {"do": "A♭", "re": "B♭", "mi": "C", "fa": "D♭", "sol": "E♭", "la": "F", "ti": "G", "me": "C♭", "te": "G♭", "le": "F♭", "ra": "A", "se": "D"}, "A": {"do": "A", "re": "B", "mi": "C♯", "fa": "D", "sol": "E", "la": "F♯", "ti": "G♯", "me": "C", "te": "G", "le": "F", "ra": "B♭", "se": "E♭"}, "Bb": {"do": "B♭", "re": "C", "mi": "D", "fa": "E♭", "sol": "F", "la": "G", "ti": "A", "me": "D♭", "te": "A♭", "le": "G♭", "ra": "C♭", "se": "F♭"}, "B": {"do": "B", "re": "C♯", "mi": "D♯", "fa": "E", "sol": "F♯", "la": "G♯", "ti": "A♯", "me": "D", "te": "A", "le": "G", "ra": "C", "se": "F"}, "C": {"do": "C", "re": "D", "mi": "E", "fa": "F", "sol": "G", "la": "A", "ti": "B", "me": "E♭", "te": "B♭", "le": "A♭", "ra": "D♭", "se": "G♭"}, "Db": {"do": "D♭", "re": "E♭", "mi": "F", "fa": "G♭", "sol": "A♭", "la": "B♭", "ti": "C", "me": "F♭", "te": "C♭", "le": "A", "ra": "D", "se": "G"}, "D": {"do": "D", "re": "E", "mi": "F♯", "fa": "G", "sol": "A", "la": "B", "ti": "C♯", "me": "F", "te": "C", "le": "B♭", "ra": "E♭", "se": "A♭"}, "Eb": {"do": "E♭", "re": "F", "mi": "G", "fa": "A♭", "sol": "B♭", "la": "C", "ti": "D", "me": "G♭", "te": "D♭", "le": "C♭", "ra": "F♭", "se": "A"}, "E": {"do": "E", "re": "F♯", "mi": "G♯", "fa": "A", "sol": "B", "la": "C♯", "ti": "D♯", "me": "G", "te": "D", "le": "C", "ra": "F", "se": "B♭"}};
-const NUM = {do:'1',ra:'♭2',re:'2',me:'♭3',mi:'3',fa:'4',se:'♭5',sol:'5',le:'♭6',la:'6',te:'♭7',ti:'7'};
-const ALT = {me:1,le:1,ra:1,se:1,te:1};
-const ROWS = [["do", "re", "mi", "fa", "sol", "la", "ti", "do", "do", "re", "me", "fa", "sol", "la", "ti", "do"], ["do", "re", "mi", "fa", "sol", "la", "te", "do", "do", "re", "me", "fa", "sol", "la", "te", "do"], ["do", "re", "me", "fa", "sol", "la", "te", "do", "do", "re", "me", "fa", "sol", "la", "ti", "do"], ["do", "re", "me", "fa", "sol", "la", "te", "do", "do", "re", "me", "fa", "sol", "le", "te", "do"], ["do", "re", "me", "fa", "sol", "le", "te", "do", "do", "re", "me", "fa", "sol", "le", "ti", "do"], ["do", "re", "me", "fa", "sol", "le", "te", "do", "do", "re", "me", "fa", "sol", "la", "te", "do"], ["do", "re", "me", "fa", "sol", "le", "te", "do", "do", "ra", "me", "fa", "sol", "le", "te", "do"], ["do", "ra", "me", "fa", "sol", "le", "te", "do", "do", "ra", "me", "fa", "se", "le", "te", "do"]];
-const INFO = [
-  {from:['Ionian','大調'], to:['Melodic minor','旋律小調'], a:'mi', b:'me', idx:2, how:'降 mi'},
-  {from:['Mixolydian','米索利底安'], to:['Dorian','多里安'], a:'mi', b:'me', idx:2, how:'降 mi'},
-  {from:['Dorian','多里安'], to:['Melodic minor','旋律小調'], a:'te', b:'ti', idx:6, how:'升 te 回 ti'},
-  {from:['Dorian','多里安'], to:['Aeolian','自然小調'], a:'la', b:'le', idx:5, how:'降 la'},
-  {from:['Aeolian','自然小調'], to:['Harmonic minor','和聲小調'], a:'te', b:'ti', idx:6, how:'升 te 回 ti'},
-  {from:['Aeolian','自然小調'], to:['Dorian','多里安'], a:'le', b:'la', idx:5, how:'升 le 回 la'},
-  {from:['Aeolian','自然小調'], to:['Phrygian','弗里吉安'], a:'re', b:'ra', idx:1, how:'降 re'},
-  {from:['Phrygian','弗里吉安'], to:['Locrian','洛克里安'], a:'sol', b:'se', idx:4, how:'降 sol'},
-];
-const SEC = 16;            // seconds per group (16 notes, 1s each)
-const TOTAL = 128;         // 8 groups * 16s
+// per key and group: [source pitch, changed pitch, index] (spelling from the score XML)
+const CHG = {"D": [["F♯", "F", 2], ["F♯", "F", 2], ["C", "C♯", 6], ["B", "B♭", 5], ["C", "C♯", 6], ["B♭", "B", 5], ["E", "E♭", 1], ["A", "A♭", 4]], "Db": [["F", "F♭", 2], ["F", "F♭", 2], ["C♭", "C", 6], ["B♭", "B𝄫", 5], ["C♭", "C", 6], ["B𝄫", "B♭", 5], ["E♭", "E𝄫", 1], ["A♭", "A𝄫", 4]], "B": [["D♯", "D", 2], ["D♯", "D", 2], ["A", "A♯", 6], ["G♯", "G", 5], ["A", "A♯", 6], ["G", "G♯", 5], ["C♯", "C", 1], ["F♯", "F", 4]], "A": [["C♯", "C", 2], ["C♯", "C", 2], ["G", "G♯", 6], ["F♯", "F", 5], ["G", "G♯", 6], ["F", "F♯", 5], ["B", "B♭", 1], ["E", "E♭", 4]], "Ab": [["C", "C♭", 2], ["C", "C♭", 2], ["G♭", "G", 6], ["F", "F♭", 5], ["G♭", "G", 6], ["F♭", "F", 5], ["B♭", "B𝄫", 1], ["E♭", "E𝄫", 4]], "Bb": [["D", "D♭", 2], ["D", "D♭", 2], ["A♭", "A", 6], ["G", "G♭", 5], ["A♭", "A", 6], ["G♭", "G", 5], ["C", "C♭", 1], ["F", "F♭", 4]], "Eb": [["G", "G♭", 2], ["G", "G♭", 2], ["D♭", "D", 6], ["C", "C♭", 5], ["D♭", "D", 6], ["C♭", "C", 5], ["F", "F♭", 1], ["B♭", "B𝄫", 4]], "C": [["E", "E♭", 2], ["E", "E♭", 2], ["B♭", "B", 6], ["A", "A♭", 5], ["B♭", "B", 6], ["A♭", "A", 5], ["D", "D♭", 1], ["G", "G♭", 4]], "E": [["G♯", "G", 2], ["G♯", "G", 2], ["D", "D♯", 6], ["C♯", "C", 5], ["D", "D♯", 6], ["C", "C♯", 5], ["F♯", "F", 1], ["B", "B♭", 4]]};
+const NUM = {do:'1',re:'2',mi:'3',fa:'4',sol:'5',la:'6',ti:'7',me:'3♭',te:'7♭',fi:'4♯',di:'1♯',si:'5♯'};
+const POS = {do:0,di:0,re:1,me:2,mi:2,fa:3,fi:3,sol:4,si:4,la:5,ti:6,te:6};
+const GROUPS = [
+ {from:['Ionian','大調'], to:['Melodic minor','旋律小調'], rows:['do re mi fa sol la ti do','do re me fa sol la ti do','la ti do re mi fi si la']},
+ {from:['Mixolydian','米索利底安'], to:['Dorian','多里安'], rows:['sol la ti do re mi fa sol','sol la te do re mi fa sol','re mi fa sol la ti do re']},
+ {from:['Dorian','多里安'], to:['Melodic minor','旋律小調'], rows:['re mi fa sol la ti do re','re mi fa sol la ti di re','la ti do re mi fi si la']},
+ {from:['Dorian','多里安'], to:['Aeolian','自然小調'], rows:['re mi fa sol la ti do re','re mi fa sol la te do re','la ti do re mi fa sol la']},
+ {from:['Aeolian','自然小調'], to:['Harmonic minor','和聲小調'], rows:['la ti do re mi fa sol la','la ti do re mi fa si la']},
+ {from:['Aeolian','自然小調'], to:['Dorian','多里安'], rows:['la ti do re mi fa sol la','la ti do re mi fi sol la','re mi fa sol la ti do re']},
+ {from:['Aeolian','自然小調'], to:['Phrygian','弗里吉安'], rows:['la ti do re mi fa sol la','la te do re mi fa sol la','mi fa sol la ti do re mi']},
+ {from:['Phrygian','弗里吉安'], to:['Locrian','洛克里安'], rows:['mi fa sol la ti do re mi','mi fa sol la te do re mi','ti do re mi fa sol la ti']},
+].map(g=>{ g.rows=g.rows.map(r=>r.split(' ')); return g; });
+const STARTS = [0,24,48,72,96,112,136,160];
+const BARS = [[1,12],[13,24],[25,36],[37,48],[49,56],[57,68],[69,80],[81,92]];
+const TOTAL = 184;         // seconds of music (the file has a little silence after)
 let curKey = 'C';
 
 const au = document.getElementById('au');
@@ -176,37 +176,46 @@ function loadKey(){
   au.currentTime = 0;
   document.getElementById('nowKey').textContent = KEYS.find(k=>k.id===curKey).label;
 }
-function pn(s){ return NAMES[curKey][s]; }
-function cells(si, half){
-  const row = ROWS[si].slice(half*8, half*8+8);
-  const inf = INFO[si];
+function cells(gi, ri){
+  const g = GROUPS[gi], row = g.rows[ri];
+  const start = POS[row[0]];
+  const idx = CHG[curKey][gi][2];
   return row.map((s,i)=>{
     let cls = 'cell';
-    if(ALT[s]) cls += ' alt';
-    if(i===inf.idx) cls += ' was';
-    return `<div class="${cls}" id="c${si}-${half*8+i}"><div class="dot">${i===7?'•':''}</div><div class="syl">${s}</div><div class="num">${NUM[s]}</div></div>`;
+    if(ri===1 && i===idx) cls += ' alt';
+    if(ri===0 && i===idx) cls += ' was';
+    const hi = (start+i) >= 7;
+    return `<div class="${cls}" id="c${gi}-${ri*8+i}"><div class="dot">${hi?'•':''}</div><div class="syl">${s}</div><div class="num">${NUM[s]}</div></div>`;
   }).join('');
 }
 function buildModes(){
   const wrap = document.getElementById('modes');
   wrap.innerHTML = '';
-  INFO.forEach((inf,si)=>{
+  GROUPS.forEach((g,gi)=>{
+    const c = CHG[curKey][gi], idx = c[2];
+    const a = g.rows[0][idx], b = g.rows[1][idx];
+    const verb = ['me','te'].includes(b) ? '降' : '升';
     const div = document.createElement('div');
     div.className = 'mode';
-    div.id = 'mode' + si;
-    const b1 = si*8+1, b2 = si*8+8;
-    div.innerHTML = `
+    div.id = 'mode' + gi;
+    let html = `
       <div class="mhead">
-        <span class="mnum">${si+1}</span>
-        <span class="mname">${inf.from[0]} → ${inf.to[0]}<span class="en">${inf.from[1]} → ${inf.to[1]}</span></span>
-        <span class="mchg">${inf.how} · <b>${inf.a}</b> → <b>${inf.b}</b>(${pn(inf.a)} → ${pn(inf.b)})<span class="en">change one note</span></span>
+        <span class="mnum">${gi+1}</span>
+        <span class="mname">${g.from[0]} → ${g.to[0]}<span class="en">${g.from[1]} → ${g.to[1]}</span></span>
+        <span class="mchg">${verb} ${a} · <b>${a}</b> → <b>${b}</b>(${c[0]} → ${c[1]})<span class="en">change one note</span></span>
       </div>
-      <div class="rowlabel">先唱來源 <b>${inf.from[1]} ${inf.from[0]}</b><span class="en">source scale</span></div>
-      <div class="sol">${cells(si,0)}</div>
-      <div class="rowlabel">再唱改變後 <b>${inf.to[1]} ${inf.to[0]}</b><span class="en">after the change</span></div>
-      <div class="sol">${cells(si,1)}</div>
-      <div class="mnote">第 ${b1}–${b2} 小節 · bars ${b1}–${b2} · 上行 ascending</div>`;
-    div.onclick = ()=>{ au.currentTime = si*SEC + 0.001; play(); };
+      <div class="rowlabel">先唱來源 <b>${g.from[1]} ${g.from[0]}</b><span class="en">source scale</span></div>
+      <div class="sol">${cells(gi,0)}</div>
+      <div class="rowlabel">變一個音 <b>${a} → ${b}</b><span class="en">change one note</span></div>
+      <div class="sol">${cells(gi,1)}</div>`;
+    if(g.rows[2]){
+      html += `
+      <div class="rowlabel">再用首調唱 <b>${g.to[1]} ${g.to[0]}</b><span class="en">same notes, parent-major syllables</span></div>
+      <div class="sol">${cells(gi,2)}</div>`;
+    }
+    html += `<div class="mnote">第 ${BARS[gi][0]}–${BARS[gi][1]} 小節 · bars ${BARS[gi][0]}–${BARS[gi][1]} · 上行 ascending</div>`;
+    div.innerHTML = html;
+    div.onclick = ()=>{ au.currentTime = STARTS[gi] + 0.001; play(); };
     wrap.appendChild(div);
   });
 }
@@ -225,21 +234,22 @@ au.addEventListener('timeupdate', ()=>{
   if(t >= TOTAL){ pause(); au.currentTime = 0; t = 0; }
   fill.style.width = (t/TOTAL*100)+'%';
   tcur.textContent = fmt(t);
-  const si = Math.min(7, Math.floor(t/SEC));
-  const ni = Math.min(15, Math.floor(t - si*SEC));
-  INFO.forEach((s,i)=>document.getElementById('mode'+i).classList.toggle('playing', i===si && !au.paused));
+  let gi = 0;
+  for(let i=0;i<STARTS.length;i++) if(t>=STARTS[i]) gi=i;
+  const ni = Math.min(GROUPS[gi].rows.length*8-1, Math.floor(t - STARTS[gi]));
+  GROUPS.forEach((s,i)=>document.getElementById('mode'+i).classList.toggle('playing', i===gi && !au.paused));
   document.querySelectorAll('.cell.now').forEach(c=>c.classList.remove('now'));
   if(!au.paused){
-    const c = document.getElementById('c'+si+'-'+ni);
+    const c = document.getElementById('c'+gi+'-'+ni);
     if(c) c.classList.add('now');
   }
 });
 au.addEventListener('ended', ()=>{ pause(); au.currentTime=0; });
-for(let i=1;i<8;i++){
-  const s = document.createElement('div');
-  s.className='seg'; s.style.left=(i/8*100)+'%';
-  bar.appendChild(s);
-}
+STARTS.slice(1).forEach(s=>{
+  const d = document.createElement('div');
+  d.className='seg'; d.style.left=(s/TOTAL*100)+'%';
+  bar.appendChild(d);
+});
 buildKeys(); buildModes(); loadKey();
 </script>
 </body>
