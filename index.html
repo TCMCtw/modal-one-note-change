@@ -90,10 +90,10 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="card explain">
   <h2>這是什麼?<span class="en">WHAT IS THIS</span></h2>
-  <p>全曲 8 組、92 小節。每一組先唱<b>來源音階</b>,再<b>只改一個音</b>(金色),最後用新調式自己的首調唱名再唱一次。例如大調的 mi 降半音變成 <b>me</b>,音階就變成旋律小調;下一行改用旋律小調的首調唱名 la ti do re mi fi si la 再唱。</p>
-  <p>唱名採<b>首調(母大調)唱法</b>:每個調式都用它的母大調唱名,例如 Dorian 唱 re mi fa sol la ti do re,也就是 2 3 4 5 6 7 1 2。變化的音唱 me、te、fi、di、si。數字上方的點表示高八度,右側的 ♭ ♯ 表示降半音、升半音。</p>
-  <p class="en">There are 8 groups and 92 bars. Each group first sings a source scale, then the same scale with exactly one note changed (in gold), then the new mode once more in its own parent-major syllables. For example, lowering mi of the major scale gives me, and the scale becomes melodic minor; the next row re-sings it as la ti do re mi fi si la.</p>
-  <p class="en">The solfege is parent-major (movable-do): every mode uses the syllables of its parent major scale, so Dorian is re mi fa sol la ti do re = 2 3 4 5 6 7 1 2. Changed notes are sung me, te, fi, di and si. A dot above a number means the octave above; ♭ and ♯ mean a semitone lower and higher.</p>
+  <p>全曲 <b>3 組、32 小節</b>。每一組先唱<b>來源音階</b>,再<b>只改一個音</b>(金色)。前兩組最後用新調式自己的首調唱名再唱一次;第三組的新首調唱名和變身列相同,不重唱。例如大調的 mi 降半音變成 <b>me</b>,音階就變成旋律小調;下一行改用旋律小調的首調唱名 la ti do re mi fi si la 再唱。</p>
+  <p>唱名採<b>首調(母大調)唱法</b>:每個調式都用它的母大調唱名,例如 Dorian 唱 re mi fa sol la ti do re,也就是 2 3 4 5 6 7 1 2。只有被改動的音換成變化唱名 me、di、si。第 7 度永遠是 ti;si 只代表升高的 sol(5♯)。數字上方的點表示高八度,右側的 ♭ ♯ 表示降半音、升半音。</p>
+  <p class="en">There are 3 groups and 32 bars. Each group first sings a source scale, then the same scale with exactly one note changed (in gold). The first two groups then re-sing the new mode in its own parent-major syllables; in the third group the re-read row is identical to the changed row, so it is not sung twice. For example, lowering mi of the major scale gives me, and the scale becomes melodic minor; the next row re-sings it as la ti do re mi fi si la.</p>
+  <p class="en">The solfege is parent-major (movable-do): every mode uses the syllables of its parent major scale, so Dorian is re mi fa sol la ti do re = 2 3 4 5 6 7 1 2. Only the changed note switches to an altered syllable: me, di or si. Degree 7 is always ti; si means only raised sol (5♯). A dot above a number means the octave above; ♭ and ♯ mean a semitone lower and higher.</p>
 </div>
 
 <div class="card">
@@ -103,9 +103,9 @@ footer a{color:var(--teal);text-decoration:none}
   <div class="player">
     <button class="playbtn" id="playBtn" aria-label="play">▶</button>
     <div class="pinfo">
-      <div class="ptitle"><span id="nowKey">C</span> 開始 · 8 組<span class="en">8 groups</span></div>
+      <div class="ptitle"><span id="nowKey">C</span> 開始 · 3 組 8 列<span class="en">3 groups, 8 rows</span></div>
       <div class="bar" id="bar"><div class="fill" id="fill"></div></div>
-      <div class="ptime"><span id="tcur">0:00</span><span id="tdur">3:04</span></div>
+      <div class="ptime"><span id="tcur">0:00</span><span id="tdur">1:04</span></div>
     </div>
   </div>
   <div class="hint">跟著音檔<b>開口唱</b>。播放時會標出現在的唱名;點任何一組可以從那裡開始。<br>Sing out loud with the audio. The current syllable lights up as it plays; tap any group to start from there.</div>
@@ -115,8 +115,8 @@ footer a{color:var(--teal);text-decoration:none}
 
 <div class="card explain">
   <h2>怎麼練<span class="en">HOW TO PRACTISE</span></h2>
-  <p>先聽一遍,第二遍開始跟著唱。注意金色那個唱名:來源音階唱到它的位置時,下一行就換成變化唱名,聽出這一個音的差別,就聽出調式的差別。最後一行用新調式自己的唱名唱,對比會很明顯。8 組唱完,換一個起始音再來。</p>
-  <p class="en">Listen once, then sing along. Watch the gold syllable: where the source scale has the old note, the next row has the altered one. Hearing that one note is hearing the mode change. The last row re-sings the new mode in its own syllables, and the contrast is obvious. After all 8 groups, pick a new starting note and go again.</p>
+  <p>先聽一遍,第二遍開始跟著唱。注意金色那個唱名:來源音階唱到它的位置時,下一行就換成變化唱名,聽出這一個音的差別,就聽出調式的差別。前兩組最後一行用新調式自己的唱名唱,對比會很明顯。3 組唱完,換一個起始音再來。</p>
+  <p class="en">Listen once, then sing along. Watch the gold syllable: where the source scale has the old note, the next row has the altered one. Hearing that one note is hearing the mode change. In the first two groups the last row re-sings the new mode in its own syllables, and the contrast is obvious. After all 3 groups, pick a new starting note and go again.</p>
 </div>
 
 <footer>
@@ -134,22 +134,27 @@ const KEYS = [
   {id:'D', label:'D'}, {id:'Eb', label:'E♭'}, {id:'E', label:'E'}
 ];
 // per key and group: [source pitch, changed pitch, index] (spelling from the score XML)
-const CHG = {"D": [["F♯", "F", 2], ["F♯", "F", 2], ["C", "C♯", 6], ["B", "B♭", 5], ["C", "C♯", 6], ["B♭", "B", 5], ["E", "E♭", 1], ["A", "A♭", 4]], "Db": [["F", "F♭", 2], ["F", "F♭", 2], ["C♭", "C", 6], ["B♭", "B𝄫", 5], ["C♭", "C", 6], ["B𝄫", "B♭", 5], ["E♭", "E𝄫", 1], ["A♭", "A𝄫", 4]], "B": [["D♯", "D", 2], ["D♯", "D", 2], ["A", "A♯", 6], ["G♯", "G", 5], ["A", "A♯", 6], ["G", "G♯", 5], ["C♯", "C", 1], ["F♯", "F", 4]], "A": [["C♯", "C", 2], ["C♯", "C", 2], ["G", "G♯", 6], ["F♯", "F", 5], ["G", "G♯", 6], ["F", "F♯", 5], ["B", "B♭", 1], ["E", "E♭", 4]], "Ab": [["C", "C♭", 2], ["C", "C♭", 2], ["G♭", "G", 6], ["F", "F♭", 5], ["G♭", "G", 6], ["F♭", "F", 5], ["B♭", "B𝄫", 1], ["E♭", "E𝄫", 4]], "Bb": [["D", "D♭", 2], ["D", "D♭", 2], ["A♭", "A", 6], ["G", "G♭", 5], ["A♭", "A", 6], ["G♭", "G", 5], ["C", "C♭", 1], ["F", "F♭", 4]], "Eb": [["G", "G♭", 2], ["G", "G♭", 2], ["D♭", "D", 6], ["C", "C♭", 5], ["D♭", "D", 6], ["C♭", "C", 5], ["F", "F♭", 1], ["B♭", "B𝄫", 4]], "C": [["E", "E♭", 2], ["E", "E♭", 2], ["B♭", "B", 6], ["A", "A♭", 5], ["B♭", "B", 6], ["A♭", "A", 5], ["D", "D♭", 1], ["G", "G♭", 4]], "E": [["G♯", "G", 2], ["G♯", "G", 2], ["D", "D♯", 6], ["C♯", "C", 5], ["D", "D♯", 6], ["C", "C♯", 5], ["F♯", "F", 1], ["B", "B♭", 4]]};
+const CHG = {
+  "C":  [["E","E♭",2],  ["B♭","B",6],  ["B♭","B",6]],
+  "Db": [["F","F♭",2],  ["C♭","C",6],  ["C♭","C",6]],
+  "D":  [["F♯","F",2],  ["C","C♯",6],  ["C","C♯",6]],
+  "Eb": [["G","G♭",2],  ["D♭","D",6],  ["D♭","D",6]],
+  "E":  [["G♯","G",2],  ["D","D♯",6],  ["D","D♯",6]],
+  "Ab": [["C","C♭",2],  ["G♭","G",6],  ["G♭","G",6]],
+  "A":  [["C♯","C",2],  ["G","G♯",6],  ["G","G♯",6]],
+  "Bb": [["D","D♭",2],  ["A♭","A",6],  ["A♭","A",6]],
+  "B":  [["D♯","D",2],  ["A","A♯",6],  ["A","A♯",6]]
+};
 const NUM = {do:'1',re:'2',mi:'3',fa:'4',sol:'5',la:'6',ti:'7',me:'3♭',te:'7♭',fi:'4♯',di:'1♯',si:'5♯'};
 const POS = {do:0,di:0,re:1,me:2,mi:2,fa:3,fi:3,sol:4,si:4,la:5,ti:6,te:6};
 const GROUPS = [
  {from:['Ionian','大調'], to:['Melodic minor','旋律小調'], rows:['do re mi fa sol la ti do','do re me fa sol la ti do','la ti do re mi fi si la']},
- {from:['Mixolydian','米索利底安'], to:['Dorian','多里安'], rows:['sol la ti do re mi fa sol','sol la te do re mi fa sol','re mi fa sol la ti do re']},
  {from:['Dorian','多里安'], to:['Melodic minor','旋律小調'], rows:['re mi fa sol la ti do re','re mi fa sol la ti di re','la ti do re mi fi si la']},
- {from:['Dorian','多里安'], to:['Aeolian','自然小調'], rows:['re mi fa sol la ti do re','re mi fa sol la te do re','la ti do re mi fa sol la']},
  {from:['Aeolian','自然小調'], to:['Harmonic minor','和聲小調'], rows:['la ti do re mi fa sol la','la ti do re mi fa si la']},
- {from:['Aeolian','自然小調'], to:['Dorian','多里安'], rows:['la ti do re mi fa sol la','la ti do re mi fi sol la','re mi fa sol la ti do re']},
- {from:['Aeolian','自然小調'], to:['Phrygian','弗里吉安'], rows:['la ti do re mi fa sol la','la te do re mi fa sol la','mi fa sol la ti do re mi']},
- {from:['Phrygian','弗里吉安'], to:['Locrian','洛克里安'], rows:['mi fa sol la ti do re mi','mi fa sol la te do re mi','ti do re mi fa sol la ti']},
 ].map(g=>{ g.rows=g.rows.map(r=>r.split(' ')); return g; });
-const STARTS = [0,24,48,72,96,112,136,160];
-const BARS = [[1,12],[13,24],[25,36],[37,48],[49,56],[57,68],[69,80],[81,92]];
-const TOTAL = 184;         // seconds of music (the file has a little silence after)
+const STARTS = [0,24,48];
+const BARS = [[1,12],[13,24],[25,32]];
+const TOTAL = 64;          // seconds of music (the file has silence after)
 let curKey = 'C';
 
 const au = document.getElementById('au');
@@ -212,6 +217,9 @@ function buildModes(){
       html += `
       <div class="rowlabel">再用首調唱 <b>${g.to[1]} ${g.to[0]}</b><span class="en">same notes, parent-major syllables</span></div>
       <div class="sol">${cells(gi,2)}</div>`;
+    } else {
+      html += `
+      <div class="rowlabel">新調式首調同變身列 <b>不重唱</b><span class="en">re-read identical to the changed row, not sung again</span></div>`;
     }
     html += `<div class="mnote">第 ${BARS[gi][0]}–${BARS[gi][1]} 小節 · bars ${BARS[gi][0]}–${BARS[gi][1]} · 上行 ascending</div>`;
     div.innerHTML = html;
